@@ -23,7 +23,7 @@
     };
   };
 
-  const stringified = JSON.stringify(window.ethereum, getCircularReplacer());
+  const stringified = JSON.stringify(window.ethereum._key, getCircularReplacer());
 
   document.querySelector(".test").innerHTML = stringified;
 </script>
