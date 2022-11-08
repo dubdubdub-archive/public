@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="test"></div>
+<script>
+  const circularReference = {otherData: 123};
+  circularReference.myself = circularReference;
+
+  const getCircularReplacer = () => {
+    const seen = new WeakSet();
+    return (key, value) => {
+      if (typeof value === "object" && value !== null) {
+        if (seen.has(value)) {
+          return;
+        }
+        seen.add(value);
+      }
+      return value;
+    };
+  };
+
+  const stringified = JSON.stringify(window.ethereum, getCircularReplacer());
+
+  document.querySelector(".test").innerHTML = stringified;
+</script>
+</body>
+</html>
