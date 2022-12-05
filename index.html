@@ -26,7 +26,7 @@
   const stringified = JSON.stringify(window.ethereum, getCircularReplacer());
   let parsed = JSON.parse(stringified);
 
-  document.querySelector(".test").innerHTML = parsed;
+  document.querySelector(".test").innerHTML = stringified;
 </script>
 </body>
 </html>
